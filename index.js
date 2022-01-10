@@ -1,6 +1,7 @@
 const express = require('express')
 var cors = require('cors')
 require('dotenv').config()
+const serveStatic = require("serve-static")
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const fs = require('fs');
@@ -30,10 +31,8 @@ regionsMap.forEach((value, key) => {
 })
 
 const app = express();
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(serveStatic(path.join(__dirname, 'dist')));
 app.use(cors({ origin: '*' }))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
   .get('/regions', (req, res) => res.status(200).send(regions))
   .get('/subregions', (req, res) => res.status(200).send(subregions))
   .get('/countries', (req, res) => res.status(200).send(countries))
