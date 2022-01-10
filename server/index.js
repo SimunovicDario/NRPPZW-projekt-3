@@ -32,6 +32,11 @@ regionsMap.forEach((value, key) => {
 
 const app = express();
 app.use(serveStatic(path.join(__dirname, 'dist')));
+
+app.get('/favicon.ico', function (req, res) {
+	res.sendFile(path.join(__dirname, './favicon.ico'));
+});
+
 app.use(cors({ origin: '*' }))
   .get('/regions', (req, res) => res.status(200).send(regions))
   .get('/subregions', (req, res) => res.status(200).send(subregions))
