@@ -41,5 +41,5 @@ app
   .get("/regions", (req, res) => res.status(200).send(regions))
   .get("/subregions", (req, res) => res.status(200).send(subregions))
   .get("/countries", (req, res) => res.status(200).send(countries))
-  .get("/*", (req,res)=>serveStatic(path.join(__dirname, "dist")))
+  .get("/*", (req,res)=>{res.sendFile(path.join(__dirname, "./dist/index.html"))})
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
