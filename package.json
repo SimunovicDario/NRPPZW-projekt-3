@@ -11,6 +11,7 @@
     "test": "node test.js"
   },
   "dependencies": {
+    "connect-history-api-fallback": "^1.6.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.5",

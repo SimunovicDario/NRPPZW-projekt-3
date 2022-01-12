@@ -31,8 +31,16 @@ regionsMap.forEach((value, key) => {
 });
 
 const app = express();
-app.use(serveStatic(path.join(__dirname, "dist")));
-
+const staticFileMiddleware = express.static("dist");
+let history = require("connect-history-api-fallback");
+app.use(staticFileMiddleware);
+app.use(
+  history({
+    disableDotRule: true,
+    verbose: true,
+  })
+);
+app.use(staticFileMiddleware);
 app
   .use(cors({ origin: "*" }))
   .get("/favicon.ico", (req, res) =>
